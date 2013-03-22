@@ -25,7 +25,10 @@ public class DataBaseAccessExampleActivity extends Activity {
 		
 		//Necessita abrir conexao com o db
 		dbAdapter.open();
-
+		
+		//Como inserir uma comida no sql parametros: nome da comida, telefone, data de validade, data de insercao, local 
+		dbAdapter.insertFood("banana", "12345678", "11/02/2013", "11/02/1999", "despensa");
+		
 		//Como pegar informacao de uma comida
 		FoodBean food = dbAdapter.getFood(1);
 		String a = food.getFoodExpirationDate();
@@ -34,11 +37,9 @@ public class DataBaseAccessExampleActivity extends Activity {
 		String d = food.getFoodName();
 		String e = food.getPhoneNumber();
 		
-		//Como inserir uma comida no sql parametros: nome da comida, telefone, data de validade, data de insercao, local 
-		dbAdapter.insertFood("banana", "12345678", "11/02/2013", "11/02/1999", "despensa");
-		
+	
 		//Como remover uma comida no sql
-		dbAdapter.RemoveFood(3);
+		//dbAdapter.RemoveFood(3);
 		
 		//Necessita fechar conexao com o bd
 		dbAdapter.close();

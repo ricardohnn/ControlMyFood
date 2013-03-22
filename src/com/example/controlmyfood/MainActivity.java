@@ -1,32 +1,37 @@
 package com.example.controlmyfood;
 
+import java.util.ArrayList;
+
+import com.example.controlmyfood.utils.GetProductData;
+
 import android.os.Bundle;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
 	// private Button botaoTeste;
-
+	private EditText nameField;
+	private EditText phoneField;
+	private EditText insertaeddataField;
+	private EditText expirationdataField;
+	private EditText locationField;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		/*
-		 * botaoTeste = (Button) findViewById(R.id.button1);
-		 * 
-		 * botaoTeste.setOnClickListener(new View.OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) {
-		 * Toast.makeText(BasicButtonActivity.this, "Button clicked!",
-		 * Toast.LENGTH_SHORT).show(); } });
-		 */
+		nameField = (EditText) findViewById(R.id.NameField);
+		phoneField = (EditText) findViewById(R.id.PhoneField);
+		insertaeddataField = (EditText) findViewById(R.id.InsertedDateField);
+		expirationdataField = (EditText) findViewById(R.id.ExpirationDateField);
+		locationField = (EditText) findViewById(R.id.LocationField);
 
 		Log.d("debug", "Fim");
 		Log.d("debug", "tripinhaaa");
@@ -34,7 +39,14 @@ public class MainActivity extends Activity {
 	}
 
 	public void Button1Bt1(View v) {
-		System.out.println("VAMO VAMO VAMO");
+		GetProductData getProductData = new GetProductData();
+		ArrayList<EditText> datas = new ArrayList<EditText>();
+		datas.add(nameField);
+		datas.add(phoneField);
+		datas.add(insertaeddataField);
+		datas.add(expirationdataField);
+		datas.add(locationField);
+		getProductData.SetFoodBean(datas);
 		Toast.makeText(this, "Produto Cadastrado", Toast.LENGTH_SHORT).show();
 
 	}
