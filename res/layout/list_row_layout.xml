@@ -8,12 +8,15 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="0px"
         android:id="@+id/headerText"
-        android:background="#FF444444"/>
+        android:background="#FF444444"
+        android:textColor="#FFFFFFFF"
+        android:textSize="28sp"/>
     
     <TextView android:layout_width="155dp"
         android:layout_height="match_parent"
         android:id="@+id/nameText"
-        android:background="#FF666666"/>
+        android:background="#FF666666"
+        android:textSize="22sp"/>
     
     <GridView android:layout_width="65dp"
         android:layout_height="match_parent"
