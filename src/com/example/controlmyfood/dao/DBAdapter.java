@@ -1,5 +1,8 @@
 package com.example.controlmyfood.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,13 +14,13 @@ import com.example.controlmyfood.vo.FoodBean;
 public class DBAdapter {
 
 	private SQLiteDatabase database;
-	private DbHelper dbHelper;
-	private String[] allColumns = { DbHelper.ID, DbHelper.FOODNAME,
-			DbHelper.PHONENUMBER, DbHelper.FOODEXPIRATIONDATE,
-			DbHelper.FOODINSERTEDDATE, DbHelper.FOODLOCATION };
+	private DBHelper dbHelper;
+	private String[] allColumns = { DBHelper.ID, DBHelper.FOODNAME,
+			DBHelper.PHONENUMBER, DBHelper.FOODEXPIRATIONDATE,
+			DBHelper.FOODINSERTEDDATE, DBHelper.FOODLOCATION };
 
 	public DBAdapter(Context context) {
-		dbHelper = new DbHelper(context);
+		dbHelper = new DBHelper(context);
 	}
 
 	public void open() throws SQLException {
@@ -86,14 +89,24 @@ public class DBAdapter {
 		database.delete(dbHelper.TABLE_NAME, dbHelper.ID + " = " + idFood, null);
 	}
 
-	public Cursor getFoods() {
+	public List<FoodBean> getFoods() {
 		Cursor cursor = database
 				.rawQuery(
 						"select _id,foodName,phoneNumber,foodExpirationDate,foodInsertedDate,foodLocation from food",
 						null);
-		return cursor;
-	}
 
+		List<FoodBean> foodBeanList = new ArrayList<FoodBean>();
+		
+		cursor.moveToFirst();
+		while (cursor.isAfterLast() == false) 
+		{
+			foodBeanList.add(cursorToFood(cursor));
+		    cursor.moveToNext();
+		}
+		
+		return foodBeanList;
+	}
+	
 	public FoodBean getFood(int idFood) {
 		Cursor cursor = database.query(dbHelper.TABLE_NAME, allColumns,
 				dbHelper.ID + " = " + idFood, null, null, null, null);
