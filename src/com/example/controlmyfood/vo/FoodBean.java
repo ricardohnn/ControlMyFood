@@ -9,6 +9,9 @@ public class FoodBean {
 	private String foodInsertedDate;
 	private String foodLocation;
 
+	public FoodBean() {
+	}
+	
 	public FoodBean(long id, String foodName, String phoneNumber, String foodExpirationDate,
 			String foodInsertedDate, String foodLocation) {
 		this.id = id;
