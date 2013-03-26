@@ -13,11 +13,13 @@ public class DataBaseAccessExampleActivity extends Activity {
 	//Contexto da activity
 	private Context context;
 	private DBAdapter dbAdapter;
-
+	private Long foodId;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		foodId = (long) 1;
 		
 		context = this;
 		
@@ -30,12 +32,12 @@ public class DataBaseAccessExampleActivity extends Activity {
 		dbAdapter.insertFood("banana", "12345678", "11/02/2013", "11/02/1999", "despensa");
 		
 		//Como pegar informacao de uma comida
-		FoodBean food = dbAdapter.getFood(1);
-		String a = food.getFoodExpirationDate();
-		String b = food.getFoodInsertedDate();
-		String c = food.getFoodLocation();
-		String d = food.getFoodName();
-		String e = food.getPhoneNumber();
+//		FoodBean food = dbAdapter.getFoodById(foodId);
+//		String a = food.getFoodExpirationDate();
+//		String b = food.getFoodInsertedDate();
+//		String c = food.getFoodLocation();
+//		String d = food.getFoodName();
+//		String e = food.getPhoneNumber();
 		
 	
 		//Como remover uma comida no sql

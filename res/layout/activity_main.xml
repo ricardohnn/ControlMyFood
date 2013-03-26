@@ -1,81 +1,84 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/NameView"
+    <EditText
+        android:id="@+id/nameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_view_1" />
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/text_food_name"
+        android:inputType="text" />
 
     <EditText
-        android:id="@+id/NameField"
+        android:id="@+id/phoneField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/nameField"
+        android:layout_marginBottom="10dp"
         android:ems="10"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/PhoneView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_view_2" />
-
-    <EditText
-        android:id="@+id/PhoneField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:hint="@string/phone_text"
         android:inputType="phone" />
 
-    <TextView
-        android:id="@+id/InsertedDateView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_view_3" />
-
     <EditText
-        android:id="@+id/InsertedDateField"
+        android:id="@+id/insertedDateField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/phoneField"
+        android:layout_marginBottom="10dp"
         android:ems="10"
+        android:hint="@string/inserted_date_text"
         android:inputType="date" />
 
-    <TextView
-        android:id="@+id/ExpirationDateView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_view_4" />
-
     <EditText
-        android:id="@+id/ExpirationDateField"
+        android:id="@+id/expirationDateField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/insertedDateField"
+        android:layout_marginBottom="10dp"
         android:ems="10"
+        android:hint="@string/expiration_date_text"
         android:inputType="date" />
 
-    <TextView
-        android:id="@+id/LocationView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_view_5" />
-
     <EditText
-        android:id="@+id/LocationField"
+        android:id="@+id/locationField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/expirationDateField"
+        android:layout_marginBottom="10dp"
         android:ems="10"
+        android:hint="@string/location_text"
         android:inputType="text" />
 
     <Button
-        android:id="@+id/Button1"
+        android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="23dp"
-        android:onClick="Button1Bt1"
-        android:text="@string/text_button_1" />
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:onClick="onSubmitButtonClick"
+        android:text="@string/button_submit_text" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/getButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/submitButton"
+        android:gravity="center"
+        android:onClick="onGetButtonClick"
+        android:text="@string/button_get_text" />
+
+    <Button
+        android:id="@+id/removeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/getButton"
+        android:gravity="center"
+        android:onClick="onRemoveButtonClick"
+        android:text="@string/button_remove_text" />
+
+</RelativeLayout>

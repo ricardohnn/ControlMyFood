@@ -1,4 +1,4 @@
-package com.example.controlmyfood.controller;
+package com.example.controlmyfood.bo;
 
 import java.util.List;
 
@@ -8,13 +8,13 @@ import android.util.Log;
 import com.example.controlmyfood.dao.DBAdapter;
 import com.example.controlmyfood.vo.FoodBean;
 
-public class DBController {
+public class DBBo {
 
 	private final String TAG = "ControlMyFood";
 	private DBAdapter dbAdapter;
 	private FoodBean food;
 
-	public DBController(Context context) {
+	public DBBo(Context context) {
 		dbAdapter = new DBAdapter(context);
 	}
 
@@ -39,17 +39,17 @@ public class DBController {
 		return result;
 	}
 
-	public FoodBean readFood(int foodId) {
+	public FoodBean readFoodById(Long foodId) {
 		Log.d(TAG, "Reading food information");
 
 		dbAdapter.open();
-		food = dbAdapter.getFood(foodId);
+		food = dbAdapter.getFoodById(foodId);
 		dbAdapter.close();
 
 		return food;
 	}
 
-	public Void removeFood(int foodId) {
+	public Void removeFood(Long foodId) {
 		Log.d(TAG, "Removing food information");
 
 		dbAdapter.open();

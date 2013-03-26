@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.controlmyfood.vo.FoodBean;
 
@@ -44,6 +45,13 @@ public class DBAdapter {
 
 		long insertId = database.insert(dbHelper.TABLE_NAME, null, values);
 
+		Log.i("ControlMyFood",
+				"Expiration Date: " + foodExpirationDate
+						+ "\nInsertion Date: " + foodInsertedDate
+						+ "\nLocation: " + foodLocation
+						+ "\nFood Name: " + foodName
+						+ "\nPhone Number: " + phoneNumber);
+		
 		// To show how to query
 		Cursor cursor = database.query(dbHelper.TABLE_NAME, allColumns,
 				dbHelper.ID + " = " + insertId, null, null, null, null);
@@ -85,7 +93,7 @@ public class DBAdapter {
 		return food;
 	}
 
-	public void RemoveFood(int idFood) {
+	public void RemoveFood(Long idFood) {
 		database.delete(dbHelper.TABLE_NAME, dbHelper.ID + " = " + idFood, null);
 	}
 
@@ -107,7 +115,7 @@ public class DBAdapter {
 		return foodBeanList;
 	}
 	
-	public FoodBean getFood(int idFood) {
+	public FoodBean getFoodById(Long idFood) {
 		Cursor cursor = database.query(dbHelper.TABLE_NAME, allColumns,
 				dbHelper.ID + " = " + idFood, null, null, null, null);
 		cursor.moveToFirst();
