@@ -1,6 +1,7 @@
 package com.example.controlmyfood.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.util.Log;
@@ -26,6 +27,13 @@ public class FoodController {
 						+ "\nFood Name: " + food.getFoodName()
 						+ "\nPhone Number: " + food.getPhoneNumber());
 		return true;
+	}
+	
+	public List<FoodBean> loadAllFoods(Context context) {
+		DBBo dbBo = new DBBo(context);
+		List<FoodBean> foods = dbBo.getFoodList();
+
+		return foods;
 	}
 
 	public Void removeFood(Context context, Long foodId) {

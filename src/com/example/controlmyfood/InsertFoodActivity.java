@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.example.controlmyfood.controller.FoodController;
 
-public class MainActivity extends Activity {
+public class InsertFoodActivity extends Activity {
 
 	// private Button botaoTeste;
 	private EditText nameField;
@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.insert_activity);
 
 		context = this;
 		

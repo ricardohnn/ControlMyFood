@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/phoneNumberItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="PhoneNumber"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/expirationDateItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberItem"
+        android:layout_centerHorizontal="true"
+        android:text="ExpirationDate"
+        android:textSize="8sp" />
+
+    <ImageView
+        android:id="@+id/foodImageItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/expirationDateItem"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/foodNameItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/foodImageItem"
+        android:layout_centerHorizontal="true"
+        android:text="FoodName"
+        android:textSize="8sp" />
+
+</RelativeLayout>
