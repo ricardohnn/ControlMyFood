@@ -1,4 +1,4 @@
-package com.example.controlmyfood;
+package com.example.controlmyfood.activities;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
+import com.example.controlmyfood.R;
+import com.example.controlmyfood.adapters.GridItemAdapter;
 import com.example.controlmyfood.controller.FoodController;
 import com.example.controlmyfood.vo.FoodBean;
 

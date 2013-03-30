@@ -1,4 +1,4 @@
-package com.example.controlmyfood;
+package com.example.controlmyfood.adapters;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.controlmyfood.R;
 import com.example.controlmyfood.vo.FoodBean;
 
 public class GridItemAdapter extends BaseAdapter {

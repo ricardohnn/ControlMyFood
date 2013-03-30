@@ -1,4 +1,4 @@
-package com.example.controlmyfood;
+package com.example.controlmyfood.activities;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.controlmyfood.R;
 import com.example.controlmyfood.controller.FoodController;
 
 public class InsertFoodActivity extends Activity {
@@ -45,6 +46,7 @@ public class InsertFoodActivity extends Activity {
 		datas.add(expirationDataField.getText().toString());
 		datas.add(locationField.getText().toString());
 		foodController.saveFood(context, datas);
+		this.finish();
 		// Toast.makeText(this, "Produto Cadastrado", Toast.LENGTH_SHORT).show();
 	}
 	
