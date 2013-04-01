@@ -1,4 +1,4 @@
-package com.example.controlmyfood;
+package com.example.controlmyfood.adapters;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.controlmyfood.R;
 import com.example.controlmyfood.vo.FoodBean;
 
 public class GridItemAdapter extends BaseAdapter {
@@ -37,7 +38,7 @@ public class GridItemAdapter extends BaseAdapter {
 			gridView = inflater.inflate(R.layout.grid_item, null);
  
 			ImageView foodImageItem = (ImageView) gridView.findViewById(R.id.foodImageItem);
-			foodImageItem.setBackgroundResource(R.drawable.ic_launcher);
+			foodImageItem.setBackgroundResource(R.drawable.item_milk);
 			
 			TextView foodNameItem = (TextView) gridView
 					.findViewById(R.id.foodNameItem);

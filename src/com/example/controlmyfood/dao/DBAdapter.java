@@ -31,7 +31,7 @@ public class DBAdapter {
 	public void close() {
 		dbHelper.close();
 	}
-	
+
 	public FoodBean insertFood(String foodName, String phoneNumber,
 			String foodExpirationDate, String foodInsertedDate,
 			String foodLocation) {
@@ -45,13 +45,11 @@ public class DBAdapter {
 
 		long insertId = database.insert(dbHelper.TABLE_NAME, null, values);
 
-		Log.i("ControlMyFood",
-				"Expiration Date: " + foodExpirationDate
-						+ "\nInsertion Date: " + foodInsertedDate
-						+ "\nLocation: " + foodLocation
-						+ "\nFood Name: " + foodName
-						+ "\nPhone Number: " + phoneNumber);
-		
+		Log.i("ControlMyFood", "Expiration Date: " + foodExpirationDate
+				+ "\nInsertion Date: " + foodInsertedDate + "\nLocation: "
+				+ foodLocation + "\nFood Name: " + foodName
+				+ "\nPhone Number: " + phoneNumber);
+
 		// To show how to query
 		Cursor cursor = database.query(dbHelper.TABLE_NAME, allColumns,
 				dbHelper.ID + " = " + insertId, null, null, null, null);
@@ -59,15 +57,22 @@ public class DBAdapter {
 		return cursorToFood(cursor);
 	}
 
-	public FoodBean insertOrUpdateFood(String foodName,
-			String phoneNumber, String foodExpirationDate, String foodInsertedDate,
+	public FoodBean insertOrUpdateFood(String foodName, String phoneNumber,
+			String foodExpirationDate, String foodInsertedDate,
 			String foodLocation) {
 
 		Cursor cursor = database.query(dbHelper.TABLE_NAME, allColumns,
-				dbHelper.FOODNAME + " = '" + foodName + "' and " + dbHelper.PHONENUMBER + " = '" + phoneNumber + "' and " + dbHelper.FOODEXPIRATIONDATE + " = '" + foodExpirationDate + "' and " + dbHelper.FOODINSERTEDDATE + " = '" + foodInsertedDate + "' and " + dbHelper.FOODLOCATION + " = '" + foodLocation + "'", null, null, null, null);
-		
+				dbHelper.FOODNAME + " = '" + foodName + "' and "
+						+ dbHelper.PHONENUMBER + " = '" + phoneNumber
+						+ "' and " + dbHelper.FOODEXPIRATIONDATE + " = '"
+						+ foodExpirationDate + "' and "
+						+ dbHelper.FOODINSERTEDDATE + " = '" + foodInsertedDate
+						+ "' and " + dbHelper.FOODLOCATION + " = '"
+						+ foodLocation + "'", null, null, null, null);
+
 		if (cursor.getCount() <= 0) {
-			return insertFood(foodName, phoneNumber, foodExpirationDate, foodInsertedDate, foodLocation);
+			return insertFood(foodName, phoneNumber, foodExpirationDate,
+					foodInsertedDate, foodLocation);
 		} else {
 
 			ContentValues values = new ContentValues();
@@ -76,8 +81,16 @@ public class DBAdapter {
 			values.put(dbHelper.FOODEXPIRATIONDATE, foodExpirationDate);
 			values.put(dbHelper.FOODINSERTEDDATE, foodInsertedDate);
 			values.put(dbHelper.FOODLOCATION, foodLocation);
-			
-			long updateId = database.update(dbHelper.TABLE_NAME, values, dbHelper.FOODNAME + " = '" + foodName + "' and " + dbHelper.PHONENUMBER + " = '" + phoneNumber + "' and " + dbHelper.FOODEXPIRATIONDATE + " = '" + foodExpirationDate + "' and " + dbHelper.FOODINSERTEDDATE + " = '" + foodInsertedDate + "' and " + dbHelper.FOODLOCATION + " = '" + foodLocation + "'",null);
+
+			long updateId = database.update(dbHelper.TABLE_NAME, values,
+					dbHelper.FOODNAME + " = '" + foodName + "' and "
+							+ dbHelper.PHONENUMBER + " = '" + phoneNumber
+							+ "' and " + dbHelper.FOODEXPIRATIONDATE + " = '"
+							+ foodExpirationDate + "' and "
+							+ dbHelper.FOODINSERTEDDATE + " = '"
+							+ foodInsertedDate + "' and "
+							+ dbHelper.FOODLOCATION + " = '" + foodLocation
+							+ "'", null);
 
 			cursor = database.query(dbHelper.TABLE_NAME, allColumns,
 					dbHelper.ID + " = " + updateId, null, null, null, null);
@@ -85,7 +98,7 @@ public class DBAdapter {
 			return cursorToFood(cursor);
 		}
 	}
-	
+
 	private FoodBean cursorToFood(Cursor cursor) {
 		FoodBean food = new FoodBean(cursor.getLong(0), cursor.getString(1),
 				cursor.getString(2), cursor.getString(3), cursor.getString(4),
@@ -97,29 +110,36 @@ public class DBAdapter {
 		database.delete(dbHelper.TABLE_NAME, dbHelper.ID + " = " + idFood, null);
 	}
 
-	public List<FoodBean> getFoods() {
-		Cursor cursor = database
-				.rawQuery(
-						"select _id,foodName,phoneNumber,foodExpirationDate,foodInsertedDate,foodLocation from food",
-						null);
+	public List<FoodBean> getFoods(String foodLocal) {
+		Cursor cursor;
+		if (foodLocal.equals("")) {
+			cursor = database
+					.rawQuery(
+							"select _id,foodName,phoneNumber,foodExpirationDate,foodInsertedDate,foodLocation from food",
+							null);
+		} else {
+			cursor = database
+					.rawQuery(
+							"select _id,foodName,phoneNumber,foodExpirationDate,foodInsertedDate,foodLocation from food where foodLocation = " + "'" +foodLocal + "'" ,
+							null);
+		}
 
 		List<FoodBean> foodBeanList = new ArrayList<FoodBean>();
-		
+
 		cursor.moveToFirst();
-		while (cursor.isAfterLast() == false) 
-		{
+		while (cursor.isAfterLast() == false) {
 			foodBeanList.add(cursorToFood(cursor));
-		    cursor.moveToNext();
+			cursor.moveToNext();
 		}
-		
+
 		return foodBeanList;
 	}
-	
+
 	public FoodBean getFoodById(Long idFood) {
 		Cursor cursor = database.query(dbHelper.TABLE_NAME, allColumns,
 				dbHelper.ID + " = " + idFood, null, null, null, null);
 		cursor.moveToFirst();
 		return cursorToFood(cursor);
 	}
-	
+
 }
