@@ -1,6 +1,9 @@
 package com.example.controlmyfood.vo;
 
-public class FoodBean {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class FoodBean implements Parcelable {
 
 	private Long id;
 	private String foodName;
@@ -11,9 +14,14 @@ public class FoodBean {
 
 	public FoodBean() {
 	}
-	
-	public FoodBean(long id, String foodName, String phoneNumber, String foodExpirationDate,
-			String foodInsertedDate, String foodLocation) {
+
+	public FoodBean(Parcel in) {
+		readFromParcel(in);
+	}
+
+	public FoodBean(long id, String foodName, String phoneNumber,
+			String foodExpirationDate, String foodInsertedDate,
+			String foodLocation) {
 		this.id = id;
 		this.foodName = foodName;
 		this.phoneNumber = phoneNumber;
@@ -21,6 +29,42 @@ public class FoodBean {
 		this.foodInsertedDate = foodInsertedDate;
 		this.foodLocation = foodLocation;
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	private void readFromParcel(Parcel in) {
+
+		id = in.readLong();
+		foodName = in.readString();
+		phoneNumber = in.readString();
+		foodExpirationDate = in.readString();
+		foodInsertedDate = in.readString();
+		foodLocation = in.readString();
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+
+		dest.writeLong(id);
+		dest.writeString(foodName);
+		dest.writeString(phoneNumber);
+		dest.writeString(foodExpirationDate);
+		dest.writeString(foodInsertedDate);
+		dest.writeString(foodLocation);
+	}
+
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+		public FoodBean createFromParcel(Parcel in) {
+			return new FoodBean(in);
+		}
+
+		public FoodBean[] newArray(int size) {
+			return new FoodBean[size];
+		}
+	};
 
 	public Long getId() {
 		return id;

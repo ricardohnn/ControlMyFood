@@ -59,12 +59,12 @@ public class DBBo {
 		return null;
 	}
 
-	public List<FoodBean> getFoodList() {
+	public List<FoodBean> getFoodList(String foodLocal) {
 		Log.d(TAG, "Getting all foods information");
 
 		List<FoodBean> foodBeanList = null;
 		dbAdapter.open();
-		foodBeanList = dbAdapter.getFoods();
+		foodBeanList = dbAdapter.getFoods(foodLocal);
 		dbAdapter.close();
 
 		return foodBeanList;
