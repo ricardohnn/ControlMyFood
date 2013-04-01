@@ -4,7 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.controlmyfood.activities.FreezerFragment;
 import com.example.controlmyfood.activities.FridgeFragment;
+import com.example.controlmyfood.activities.PantryFragment;
 
 public class MainFragmentAdapter extends FragmentPagerAdapter {
 	public MainFragmentAdapter(FragmentManager fm) {
@@ -20,14 +22,15 @@ public class MainFragmentAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int position) {
 		switch (position) {
 		case 0:
-			return new FridgeFragment();
+			return new FreezerFragment();
 		case 1:
 			return new FridgeFragment();
 		case 2:
-			return new FridgeFragment();
+			return new PantryFragment();
 
 		default:
 			return null;
 		}
 	}
+
 }

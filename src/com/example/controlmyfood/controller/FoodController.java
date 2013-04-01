@@ -29,9 +29,9 @@ public class FoodController {
 		return true;
 	}
 	
-	public List<FoodBean> loadAllFoods(Context context) {
+	public List<FoodBean> loadAllFoods(Context context, String foodLocal) {
 		DBBo dbBo = new DBBo(context);
-		List<FoodBean> foods = dbBo.getFoodList();
+		List<FoodBean> foods = dbBo.getFoodList(foodLocal);
 
 		return foods;
 	}

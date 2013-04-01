@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="PhoneNumber"
+        android:textColor="#FFFFFF"
         android:textSize="8sp" />
 
     <TextView
@@ -18,6 +19,7 @@
         android:layout_below="@+id/phoneNumberItem"
         android:layout_centerHorizontal="true"
         android:text="ExpirationDate"
+        android:textColor="#FFFFFF"
         android:textSize="8sp" />
 
     <ImageView
@@ -26,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/expirationDateItem"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/item_milk" />
 
     <TextView
         android:id="@+id/foodNameItem"
@@ -35,6 +37,8 @@
         android:layout_below="@id/foodImageItem"
         android:layout_centerHorizontal="true"
         android:text="FoodName"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
         android:textSize="8sp" />
 
 </RelativeLayout>

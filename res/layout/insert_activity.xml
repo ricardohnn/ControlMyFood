@@ -63,20 +63,12 @@
         android:onClick="onSubmitButtonClick"
         android:text="@string/button_submit_text" />
 
-    <Button
-        android:id="@+id/getButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/submitButton"
-        android:gravity="center"
-        android:onClick="onGetButtonClick"
-        android:text="@string/button_get_text" />
 
     <Button
         android:id="@+id/removeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/getButton"
+        android:layout_above="@id/submitButton"
         android:gravity="center"
         android:onClick="onRemoveButtonClick"
         android:text="@string/button_remove_text" />

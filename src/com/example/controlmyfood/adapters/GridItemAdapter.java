@@ -38,7 +38,7 @@ public class GridItemAdapter extends BaseAdapter {
 			gridView = inflater.inflate(R.layout.grid_item, null);
  
 			ImageView foodImageItem = (ImageView) gridView.findViewById(R.id.foodImageItem);
-			foodImageItem.setBackgroundResource(R.drawable.ic_launcher);
+			foodImageItem.setBackgroundResource(R.drawable.item_milk);
 			
 			TextView foodNameItem = (TextView) gridView
 					.findViewById(R.id.foodNameItem);

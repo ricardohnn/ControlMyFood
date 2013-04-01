@@ -2,9 +2,13 @@ package com.example.controlmyfood.activities;
 
 import java.util.List;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +26,20 @@ public class FridgeFragment extends Fragment {
 	private Context context;
 	private GridView gridView;
 	private List<FoodBean> foods;
+	private FoodController foodController;
+	private GridItemAdapter gridAdapter;
+	private BroadcastReceiver broadcastReceiver;
+	private View view;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// TODO EXISTIA ALGO QUE DEVIA SER FEITO PARA USAR O GETACTIVITY()
 		context = getActivity();
-		FoodController foodController = new FoodController();
-		foods = foodController.loadAllFoods(context);
+
+		broadcastReceiver = new FragmentReceiver1();
+		getActivity().registerReceiver(broadcastReceiver,
+				new IntentFilter("fragmentupdater"));
 	}
 
 	@Override
@@ -41,16 +51,57 @@ public class FridgeFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.grid_activity, container, false);
+		view = inflater.inflate(R.layout.grid_activity, container, false);
 
+		foodController = new FoodController();
+		foods = foodController.loadAllFoods(context, "fridge");
+
+		return view;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
 		gridView = (GridView) view.findViewById(R.id.gridView);
-		gridView.setAdapter(new GridItemAdapter(context, foods));
+		gridAdapter = new GridItemAdapter(context, foods);
+		gridView.setAdapter(gridAdapter);
 
 		gridView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
+
+				Intent intent = new Intent(context, InsertFoodActivity.class);
+				FoodBean foodItem = (FoodBean) foods.get(position);
+				intent.putExtra("showFood", foodItem);
+				startActivity(intent);
+
+				Log.d("ControlMyFood", "I ve got the " + foodItem.getFoodName()
+						+ " id " + foodItem.getId().toString());
+
 			}
 		});
-		return view;
 	}
+
+	public Void changeContentsInGrid() {
+		foods = foodController.loadAllFoods(context, "fridge");
+		gridView.invalidateViews();
+		gridAdapter.notifyDataSetChanged();
+		gridView.setAdapter(gridAdapter);
+		return null;
+	}
+
+	public class FragmentReceiver1 extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			Log.d("ControlMyFood", "Got Broadcast");
+			changeContentsInGrid();
+		}
+	}
+
+	@Override
+	public void onDestroy() {
+		getActivity().unregisterReceiver(broadcastReceiver);
+		super.onDestroy();
+	}
+
 }
